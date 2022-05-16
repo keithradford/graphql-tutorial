@@ -43,6 +43,21 @@ var root = {
 };
 
 var app = express();
+
+
+// REST
+app.use(express.json());
+
+app.get('/cars', (_, res) => {
+  res.send(cars)
+});
+
+app.post('/car', (req, res) => {
+  cars.push(req.body)
+  res.send(cars)
+});
+
+// GRAPHQL
 app.use('/graphql', graphqlHTTP({
   schema: schema,
   rootValue: root,
